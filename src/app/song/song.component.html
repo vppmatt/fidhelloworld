@@ -1,4 +1,8 @@
-<li> 
+<li [ngStyle]="{color : isTopSong ? 'red' : 'blue'}"> 
     ID: {{song.id}}  TITLE: {{song.title}}  ARTIST: {{song.artist}}
-    VOTES: {{song.votes}}  <button (click)="clickVoteUp()">vote</button>
+    VOTES: {{song.votes}}  
+    @if(isTopSong) {
+        <span><b>Top Song</b></span>
+    }
+    <button (click)="clickVoteUp()">vote</button>
 </li>

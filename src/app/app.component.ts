@@ -3,10 +3,11 @@ import { RouterOutlet } from '@angular/router';
 import { GreetingComponent } from './greeting/greeting.component';
 import { SongListComponent } from './song-list/song-list.component';
 import { PersonComponent } from './person/person.component';
+import { NgClass } from '@angular/common';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, GreetingComponent, SongListComponent, PersonComponent],
+  imports: [RouterOutlet, GreetingComponent, SongListComponent, PersonComponent, NgClass],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
@@ -36,6 +37,12 @@ export class AppComponent {
 
   resignNow() {
     this.employee.salary = 0;
+  }
+
+  mode = 'light-mode';
+
+  switchMode() {
+    this.mode = this.mode === 'light-mode' ? 'dark-mode' : 'light-mode';
   }
 
   constructor() {
@@ -69,6 +76,13 @@ export class AppComponent {
     if( name == null) {
 
     }
+
+    const ages = [21,22,25,19];
+    const moreAges = [...ages, 16];
+    console.log(moreAges)
+
+    const m1 = {name: "matt", age : 21};
+    const m2 = {...m1, pets: 0, age : 22}
 
   }
 

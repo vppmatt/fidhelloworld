@@ -1,5 +1,5 @@
-<ul>
-    <app-song [song]="song1" (voteUp)="vote($event)"></app-song>
-    <app-song [song]="song2" (voteUp)="vote($event)"></app-song>
-    <app-song [song]="song3" (voteUp)="vote($event)"></app-song>
+<ul [ngStyle]="ulStyle">
+    @for(song of songs; track song.id) {
+        <app-song [song]="song" (voteUp)="vote($event)" ></app-song>
+    }
 </ul>
