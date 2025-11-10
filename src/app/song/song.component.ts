@@ -1,10 +1,10 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { SongInterface } from '../data/SongInterface';
-import { NgStyle } from '@angular/common';
+import { CurrencyPipe, DatePipe, NgStyle } from '@angular/common';
 
 @Component({
   selector: 'app-song',
-  imports: [NgStyle],
+  imports: [NgStyle, DatePipe, CurrencyPipe],
   templateUrl: './song.component.html',
   styleUrl: './song.component.css'
 })
