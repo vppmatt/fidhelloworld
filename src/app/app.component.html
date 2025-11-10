@@ -1,0 +1,7 @@
+<h1>Welcome to the {{title}}!</h1>
+
+<app-song-list></app-song-list>
+<app-greeting [name]="person" [age]="age" (birthday)="handleBirthday()" #greeting ></app-greeting>
+<button (click)="changeGreeting()">change greeting</button>
+
+<app-person (resignation)="resignNow()" [name]="employee.name" [salary]="employee.salary" #bryan></app-person>
