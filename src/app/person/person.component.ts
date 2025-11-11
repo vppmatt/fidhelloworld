@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges } from '@angular/core';
 
 @Component({
   selector: 'app-person',
@@ -6,7 +6,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
   templateUrl: './person.component.html',
   styleUrl: './person.component.css'
 })
-export class PersonComponent {
+export class PersonComponent implements OnChanges {
 
   @Input({required: true})
   name = "";
@@ -16,6 +16,13 @@ export class PersonComponent {
 
   @Output()
   resignation = new EventEmitter();
+
+  ngOnChanges(changes: SimpleChanges): void {
+      console.log("changes detected" , changes);
+      if(changes["salary"] && !changes["salary"].firstChange) {
+          console.log("old salary ", changes["salary"].previousValue)
+      }
+  }
 
   handleResignation() {
     this.resignation.emit();

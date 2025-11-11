@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { GreetingComponent } from './greeting/greeting.component';
 import { SongListComponent } from './song-list/song-list.component';
@@ -11,7 +11,8 @@ import { NgClass } from '@angular/common';
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
+
   title = 'Song Library';
   readonly date : string = "today";
 
@@ -43,6 +44,14 @@ export class AppComponent {
 
   switchMode() {
     this.mode = this.mode === 'light-mode' ? 'dark-mode' : 'light-mode';
+    localStorage.setItem('mode', this.mode);
+    }
+
+  ngOnInit(): void {
+    const savedMode = localStorage.getItem('mode');
+    if (savedMode) {
+      this.mode = savedMode;
+    }
   }
 
   constructor() {

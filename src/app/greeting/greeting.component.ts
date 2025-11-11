@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-greeting',
@@ -6,7 +6,13 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
   templateUrl: './greeting.component.html',
   styleUrl: './greeting.component.css'
 })
-export class GreetingComponent {
+export class GreetingComponent implements OnInit {
+
+  readonly testUser = {name : "Matt", age: 21};
+
+  ngOnInit(): void {
+      console.log("in ngOnInit", this.testUser , this.name)
+  }
 
   @Input({required : true})
   name! : string;
@@ -23,4 +29,10 @@ export class GreetingComponent {
   incrementAge() {
     this.birthday.emit();
   }
+
+  constructor() {
+    console.log("this is the constructor" , this.name)
+  }
+
+
 }

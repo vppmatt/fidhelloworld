@@ -2,6 +2,7 @@ import { Component, ViewChild, ViewChildren } from '@angular/core';
 import { SongComponent } from '../song/song.component';
 import { SongInterface } from '../data/SongInterface';
 import { NgStyle } from '@angular/common';
+import { DataService } from '../data.service';
 
 @Component({
   selector: 'app-song-list',
@@ -11,12 +12,11 @@ import { NgStyle } from '@angular/common';
 })
 export class SongListComponent {
 
-  songs : SongInterface[]  = [
-    {id: 1, title:"Billie Jean", artist: "Michael Jackson", dateReleased: new Date(1983,1,2), price: 10.99, votes:0},
-    {id: 2, title:"I don't wanna miss a thing", artist: "Aerosmith", dateReleased: new Date(1998,5,2), price: 9.99, votes:0},
-    {id: 3, title:"My heart will go on", artist: "Celine Dion", dateReleased: new Date(1997,11,19), price: 7.99, votes:0}
-  ];
+  constructor(public dataService: DataService) {
 
+  }
+
+  
   @ViewChildren(SongComponent)
   songComponents! : SongComponent[];
 
@@ -24,14 +24,5 @@ export class SongListComponent {
     'list-style-type': 'none',
     padding: '0'
   };
-
-  vote(id :number) : void {
-    this.songs.find(song => song.id === id)!.votes += 1;
-
-    const maxVotes = Math.max(...this.songs.map(song => song.votes));
-
-    this.songComponents.forEach(songComp => songComp.isTopSong = maxVotes === songComp.song.votes);
-
-  }
 
 }
